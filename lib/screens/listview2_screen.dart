@@ -10,13 +10,22 @@ class Listview2Screen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('ListView 2'),
+          elevation: 0,
+          backgroundColor: Colors.deepOrangeAccent,
         ),
         body: ListView.separated(
           // separated has separatorBuiler & builder hasn't
           itemCount: options.length,
           itemBuilder: (context, index) => ListTile(
             title: Text(options[index]),
-            trailing: const Icon(Icons.arrow_forward_ios),
+            trailing: const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.deepOrangeAccent,
+            ),
+            onTap: () {
+              final opt = options[index];
+              print(opt);
+            },
           ),
           separatorBuilder: (_, __) =>
               const Divider(), //se usa _ cuando no se usan los args
