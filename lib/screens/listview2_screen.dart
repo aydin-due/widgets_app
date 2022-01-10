@@ -8,11 +8,7 @@ class Listview2Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('ListView 2'),
-          elevation: 0,
-          backgroundColor: Colors.deepOrangeAccent,
-        ),
+        appBar: AppBar(title: const Text('ListView 2')),
         body: ListView.separated(
           // separated has separatorBuiler & builder hasn't
           itemCount: options.length,
