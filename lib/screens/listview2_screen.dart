@@ -10,7 +10,7 @@ class Listview2Screen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: const Text('ListView 2')),
         body: ListView.separated(
-          // separated has separatorBuiler & builder hasn't
+          // separated has separatorBuiler (widget de separación) & builder hasn't
           itemCount: options.length,
           itemBuilder: (context, index) => ListTile(
             title: Text(options[index]),

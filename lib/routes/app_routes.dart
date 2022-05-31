@@ -34,7 +34,8 @@ class AppRoutes {
   ];
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
-    Map<String, Widget Function(BuildContext)> appRoutes = {};
+    Map<String, Widget Function(BuildContext)> appRoutes =
+        {}; //mapa con llave string q apunta a 1 widget
     for (final option in menuOptions) {
       appRoutes.addAll({option.route: (BuildContext context) => option.screen});
     }
@@ -50,7 +51,7 @@ class AppRoutes {
   // };
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    //si no existe 1 ruta, se genera
+    //si no existe 1 ruta, se retorna una x defecto
     return MaterialPageRoute(
       builder: (context) => const AlertScreen(),
     );
