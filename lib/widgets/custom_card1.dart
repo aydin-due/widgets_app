@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:widgets_app/theme/appTheme.dart';
 
-class CustomCard extends StatelessWidget {
-  const CustomCard({
+class CustomCard1 extends StatelessWidget {
+  const CustomCard1({
     Key? key,
   }) : super(key: key);
 
