@@ -26,9 +26,8 @@ class AppTheme {
           shape:  const StadiumBorder(),
           elevation: 0
         )
-      )
-      
-      );
+      ),
+    );
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
       primaryColor: Colors.deepOrangeAccent,
