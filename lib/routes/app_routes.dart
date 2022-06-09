@@ -6,46 +6,47 @@ class AppRoutes {
   static const initialRoute = 'home';
 
   static final menuOptions = <MenuOption>[
+    //   MenuOption(
+    //     route: 'home',
+    //     name: 'Home',
+    //     screen: const HomeScreen(),
+    //     icon: Icons.home_filled),
     MenuOption(
-      route: 'home',
-      name: 'Home',
-      screen: const HomeScreen(),
-      icon: Icons.home_filled),
+        route: 'listview1',
+        name: 'ListView 1',
+        screen: const Listview1Screen(),
+        icon: Icons.list),
     MenuOption(
-      route: 'listview1',
-      name: 'ListView 1',
-      screen: const Listview1Screen(),
-      icon: Icons.list),
+        route: 'listview2',
+        name: 'ListView 2',
+        screen: const Listview2Screen(),
+        icon: Icons.list_alt),
     MenuOption(
-      route: 'listview2',
-      name: 'ListView 2',
-      screen: const Listview2Screen(),
-      icon: Icons.list_alt),
+        route: 'alert',
+        name: 'Alert',
+        screen: const AlertScreen(),
+        icon: Icons.warning_amber_rounded),
     MenuOption(
-      route: 'alert',
-      name: 'Alert',
-      screen: const AlertScreen(),
-      icon: Icons.warning_amber_rounded),
+        route: 'card',
+        name: 'Card',
+        screen: const CardScreen(),
+        icon: Icons.card_membership),
     MenuOption(
-      route: 'card',
-      name: 'Card',
-      screen: const CardScreen(),
-      icon: Icons.card_membership),
+        route: 'avatar',
+        name: 'Avatar',
+        screen: const AvatarScreen(),
+        icon: Icons.account_circle_sharp),
     MenuOption(
-      route: 'avatar',
-      name: 'Avatar',
-      screen: const AvatarScreen(),
-      icon: Icons.account_circle_sharp),
-    MenuOption(
-      route: 'animated',
-      name: 'Animated Container',
-      screen: const AnimatedScreen(),
-      icon: Icons.play_arrow_sharp)
+        route: 'animated',
+        name: 'Animated Container',
+        screen: const AnimatedScreen(),
+        icon: Icons.play_arrow_sharp)
   ];
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes =
         {}; //mapa con llave string q apunta a 1 widget
+    appRoutes.addAll({'home': (BuildContext context) => const HomeScreen()});
     for (final option in menuOptions) {
       appRoutes.addAll({option.route: (BuildContext context) => option.screen});
     }
