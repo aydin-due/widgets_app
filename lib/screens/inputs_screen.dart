@@ -29,28 +29,38 @@ class InputsScreen extends StatelessWidget {
             key: myFormKey,
             child: Column(children: [
               // TextField() //no necesita q lo agrupe 1 form
-              const CustomInputField(
-                  labelText: 'Nombre', hintText: 'Nombre del usuario'),
+              CustomInputField(
+                  labelText: 'Nombre', 
+                  hintText: 'Nombre del usuario', 
+                  formProperty: 'first_name', 
+                  formValues: formValues,),
               const SizedBox(
                 height: 30,
               ),
-              const CustomInputField(
-                  labelText: 'Apellido', hintText: 'Apellido del usuario'),
+              CustomInputField(
+                  labelText: 'Apellido', 
+                  hintText: 'Apellido del usuario', 
+                  formProperty: 'last_name', 
+                  formValues: formValues,),
               const SizedBox(
                 height: 30,
               ),
-              const CustomInputField(
+              CustomInputField(
                 labelText: 'Correo',
                 hintText: 'Correo del usuario',
                 keyboardType: TextInputType.emailAddress,
+                formProperty: 'email', 
+                formValues: formValues,
               ),
               const SizedBox(
                 height: 30,
               ),
-              const CustomInputField(
+              CustomInputField(
                 labelText: 'Contraseña',
                 hintText: 'Contraseña del usuario',
                 obscureText: true,
+                formProperty: 'password', 
+                formValues: formValues,
               ),
               const SizedBox(
                 height: 30,
@@ -61,8 +71,7 @@ class InputsScreen extends StatelessWidget {
                       width: double.infinity,
                       child: Center(child: Text('Guardar'))),
                   onPressed: () {
-                    if (!myFormKey.currentState!.validate()) {
-                      // ! en current state es para decir q no va a ser null nunk
+                    if (!myFormKey.currentState!.validate()) { // ! en current state es para decir q no va a ser null nunk
                       print('formulario no válido');
                       return;
                     }
