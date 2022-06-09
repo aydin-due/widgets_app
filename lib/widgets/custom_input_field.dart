@@ -6,14 +6,18 @@ class CustomInputField extends StatelessWidget {
   final String? helperText;
   final IconData? icon;
   final IconData? suffixIcon;
+  final bool obscureText;
+  final TextInputType? keyboardType;
 
   const CustomInputField({
     Key? key,
     this.hintText,
     this.labelText,
-    this.helperText, 
-    this.icon, 
+    this.helperText,
+    this.icon,
     this.suffixIcon,
+    this.keyboardType, 
+    this.obscureText = false,
   }) : super(key: key);
 
   @override
@@ -21,8 +25,10 @@ class CustomInputField extends StatelessWidget {
     return TextFormField(
       // recomendado xq se le puede agregar validaciones automáticas (más interacciones)
       autofocus: true,
-      initialValue: 'si',
+      initialValue: '',
       textCapitalization: TextCapitalization.words,
+      keyboardType: keyboardType == null ? null : keyboardType,
+      obscureText: obscureText,
       onChanged: (value) {
         //cada q se cambia algún caracter, se ejecuta la función
         print('value: $value');
