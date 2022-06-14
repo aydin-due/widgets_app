@@ -31,10 +31,18 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
     if (isLoading) return; //para q no se ejecute cada q se mueve la pantalla
     isLoading = true;
     setState(() {});
+
     await Future.delayed(const Duration(seconds: 3));
     add5();
     isLoading = false;
     setState(() {});
+
+    if (scrollController.position.pixels + 100 <=
+        scrollController.position.maxScrollExtent) return; //si no está al final, no se mueve
+
+    scrollController.animateTo(scrollController.position.pixels + 120,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.fastOutSlowIn);
   }
 
   void add5() {
@@ -72,10 +80,16 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
                         'https://picsum.photos/500/300?image=${imageID[index]}'));
               },
             ),
-            Positioned(
-              bottom: 40, 
-              left: size.width*0.5-30, 
-              child: const _LoadingIcon())
+            if (isLoading) //solo instruccion, no cuerpo {}
+              Positioned(
+                  bottom: 40,
+                  left: size.width * 0.5 - 30,
+                  child: const _LoadingIcon())
+            else
+              Positioned(
+                  bottom: 40,
+                  left: size.width * 0.5 - 30,
+                  child: const Text('si'))
           ],
         ),
       ),
