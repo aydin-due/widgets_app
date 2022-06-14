@@ -38,7 +38,8 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
     setState(() {});
 
     if (scrollController.position.pixels + 100 <=
-        scrollController.position.maxScrollExtent) return; //si no está al final, no se mueve
+        scrollController.position.maxScrollExtent)
+      return; //si no está al final, no se mueve
 
     scrollController.animateTo(scrollController.position.pixels + 120,
         duration: const Duration(milliseconds: 300),
@@ -50,6 +51,14 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
     final lastID = imageID.last;
     imageID.addAll([1, 2, 3, 4, 5].map((e) => lastID + e));
     setState(() {});
+  }
+
+  Future<void> onRefresh() async {
+    await Future.delayed(const Duration(seconds: 2));
+    final lastID = imageID.last;
+    imageID.clear();
+    imageID.add(lastID + 1);
+    add5();
   }
 
   @override
@@ -64,32 +73,32 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
         removeBottom: true,
         child: Stack(
           children: [
-            ListView.builder(
-              //carga imágenes de manera perezosa  (cargan mientras scrolleas)
-              physics:
-                  const BouncingScrollPhysics(), //efecto al final d la pantalla d ios
-              controller: scrollController,
-              itemCount: imageID.length,
-              itemBuilder: (BuildContext context, int index) {
-                return FadeInImage(
-                    width: double.infinity,
-                    height: 300,
-                    fit: BoxFit.cover,
-                    placeholder: const AssetImage('assets/jar-loading.gif'),
-                    image: NetworkImage(
-                        'https://picsum.photos/500/300?image=${imageID[index]}'));
-              },
+            RefreshIndicator(
+              color: AppTheme.primary,
+              onRefresh: onRefresh,
+              child: ListView.builder(
+                //carga imágenes de manera perezosa  (cargan mientras scrolleas)
+                physics:
+                    const BouncingScrollPhysics(), //efecto al final d la pantalla d ios
+                controller: scrollController,
+                itemCount: imageID.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return FadeInImage(
+                      width: double.infinity,
+                      height: 300,
+                      fit: BoxFit.cover,
+                      placeholder: const AssetImage('assets/jar-loading.gif'),
+                      image: NetworkImage(
+                          'https://picsum.photos/500/300?image=${imageID[index]}'));
+                },
+              ),
             ),
             if (isLoading) //solo instruccion, no cuerpo {}
               Positioned(
                   bottom: 40,
                   left: size.width * 0.5 - 30,
                   child: const _LoadingIcon())
-            else
-              Positioned(
-                  bottom: 40,
-                  left: size.width * 0.5 - 30,
-                  child: const Text('si'))
+            
           ],
         ),
       ),
